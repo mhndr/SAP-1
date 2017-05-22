@@ -34,7 +34,7 @@ def load_hex_program(progfile):
 		exit()
 	for i in range(0,len(code)):
 		ram[i] = int(code[i])
-	print ram
+#	print ram
 
 def run():
 	for i in range(len(ram)):
@@ -46,21 +46,22 @@ def run():
 def execute(opcode, addr):
 	global A
 	if opcode == 0:
-		print "NOP"
+#		print "NOP"
 		pass
 	elif opcode == 1:
-		print "LDA",addr
+#		print "LDA",addr
 		A = ram[addr]
 	elif opcode == 2:
-		print "ADD",addr
+#		print "ADD",addr
 		A = A + ram[addr]
 	elif opcode == 3:
-		print "SUB",addr
+#		print "SUB",addr
 		A = A - ram[addr]
 	elif opcode == 4:
-		print "OUT",A 
+#		print "OUT",
+		print A 
 	elif opcode == 5:
-		print "HLT"
+#		print "HLT"
 		sys.exit(0)
 
 if __name__ == "__main__":

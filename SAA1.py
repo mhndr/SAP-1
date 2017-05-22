@@ -22,25 +22,26 @@
 			this count becomes the offset for all the symbol addresses.
 			which means that all the literals that the symbols point to
 			are kept at addresses after this count.
-			In this pass we can also populate the symbol table and addr-
+		
+		 2.	In this pass we  populate the symbol table and addr-
 			-ess table
 				Eg:
 				addr = count + instr_count + 1
 				symbol_table["A"] = addr
 				address_table[addr] = symbol_val
 				sym_count++
-		2. decode instruction
-			first the opcode 
-				op = opcode_table[field[0]]
-			then the symbol/literal
+		    And also decode instruction
+		  		first the opcode 
+					op = opcode_table[field[0]]
+				then the symbol/literal
 				if digit(field[1])
 					addr = field[1]
 				else
 					addr = symbol_table[field[1]]	  						
-			join
+				then join both
 				instr = op*100 + addr
 
-			after all instructions are done, dump the address_table contents at the end
+		 3.	after all instructions are done, dump the address_table contents at the end
 
 
 """
@@ -87,9 +88,11 @@ for i,line in enumerate(lines):
 			field = line.split()
 			addr = 0
 			if len(field)==2:
-				addr   = symbol_table[field[1]]	
-			if addr < 10:
+				addr = symbol_table[field[1]]
+			if addr < 10:	
 				addr = '0' + str(addr)
+			else:
+				addr = str(addr)
 			opcode = opcode_table[field[0]]
 			print opcode+addr
 
